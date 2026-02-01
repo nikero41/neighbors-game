@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import roundInfoReducer from "./round-info-slice/reducers";
 import countryReducer from "./countries-slice/reducers";
+import roundInfoReducer from "./round-info-slice/reducers";
 
 const store = configureStore({
 	reducer: {

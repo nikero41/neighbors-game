@@ -1,18 +1,20 @@
-import { useState, useEffect, memo } from "react";
+import { memo, useEffect, useState } from "react";
+
 import "./global.scss";
-import { useSelector, useDispatch } from "helpers/store";
 
-import { changeMainCountry } from "store/countries-slice/actions";
-import ICountry from "types/country-api.types.js";
-import { cardPick } from "helpers/country";
-import { fetchAllCountries } from "store/countries-slice/actions";
-import { roundActions } from "store/round-info-slice/reducers";
-
-import Sidebar from "components/Sidebar";
-import Title from "components/Header/Title";
 import ProgressBar from "components/Header/ProgressBar";
+import Title from "components/Header/Title";
 import CardArea from "components/Neighbors/CardArea";
 import CountryCard from "components/Neighbors/CountryCard";
+import Sidebar from "components/Sidebar";
+import { cardPick } from "helpers/country";
+import { useDispatch, useSelector } from "helpers/store";
+import {
+	changeMainCountry,
+	fetchAllCountries,
+} from "store/countries-slice/actions";
+import { roundActions } from "store/round-info-slice/reducers";
+import ICountry from "types/country-api.types.js";
 
 const App = () => {
 	const countrySlice = useSelector(state => state.countries);
@@ -38,7 +40,7 @@ const App = () => {
 	useEffect(() => {
 		if (countrySlice.mainCountry && countrySlice.countries) {
 			setCountryCards(
-				cardPick(countrySlice.mainCountry, countrySlice.countries)
+				cardPick(countrySlice.mainCountry, countrySlice.countries),
 			);
 		}
 	}, [countrySlice.mainCountry, countrySlice.countries]);

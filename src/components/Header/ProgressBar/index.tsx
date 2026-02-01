@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import styles from "./ProgressBar.module.scss";
-
+import { useEffect, useState } from "react";
 import { useSelector } from "helpers/store";
+
+import styles from "./ProgressBar.module.scss";
 
 const ProgressBar = () => {
 	const countrySlice = useSelector(state => state.countries);

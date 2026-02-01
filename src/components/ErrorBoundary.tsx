@@ -1,5 +1,4 @@
 import { Component } from "react";
-
 import Modal from "components/UI/Modal";
 
 interface State {

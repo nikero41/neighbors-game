@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
-import { IMainCountry } from "types/country.types";
 import type ICountry from "types/country-api.types";
+import { IMainCountry } from "types/country.types";
 
 interface CountriesState {
 	mainCountry: IMainCountry | null;

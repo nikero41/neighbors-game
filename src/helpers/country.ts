@@ -1,14 +1,14 @@
 import axios, { AxiosError } from "axios";
 import { getAxiosError } from "helpers/axios";
+import { shuffleArray } from "helpers/util";
 import type ICountry from "types/country-api.types";
 import { IMainCountry } from "types/country.types";
-import { shuffleArray } from "helpers/util";
 
 export const fetchCountries = async () => {
 	try {
 		const response = await axios.get<ICountry[]>(
 			"https://restcountries.com/v3.1/all",
-			{ params: { fields: "name,cca2,cca3,borders" } }
+			{ params: { fields: "name,cca2,cca3,borders" } },
 		);
 
 		return response.data;
@@ -19,7 +19,7 @@ export const fetchCountries = async () => {
 
 export const pickMainCountry = (
 	countries: ICountry[],
-	history: string[]
+	history: string[],
 ): IMainCountry => {
 	try {
 		const mainCountry = shuffleArray<ICountry>([...countries])[0];
@@ -47,12 +47,12 @@ export const pickMainCountry = (
 
 export const filterCountries = (countries: ICountry[]): ICountry[] =>
 	countries.filter((country: ICountry) =>
-		Array.isArray(country.borders) ? country.borders.length > 0 : false
+		Array.isArray(country.borders) ? country.borders.length > 0 : false,
 	);
 
 export const cardPick = (
 	mainCountry: IMainCountry,
-	countries: ICountry[]
+	countries: ICountry[],
 ): ICountry[] => {
 	const selectedCountries = [
 		...countries.filter(country => mainCountry.borders.includes(country.cca3)),

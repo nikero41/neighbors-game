@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "TwemojiMozilla";
-  src: url("/TwemojiMozilla.ttf");
+	font-family: "TwemojiMozilla";
+	src: url("/TwemojiMozilla.ttf");
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
@@ -8,28 +8,28 @@
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  margin: 0px;
-  font-family: "Lato", "Open Sans", "san-serif";
-  background-color: #fff;
-  color: #444;
+	margin: 0px;
+	font-family: "Lato", "Open Sans", "san-serif";
+	background-color: #fff;
+	color: #444;
 }
 
 .game-panel {
-  display: grid;
-  grid-template: 1fr /1fr 4fr;
-  grid-template-areas: "side main";
-  grid-gap: 0.3em;
-  margin: 40px;
+	display: grid;
+	grid-template: 1fr /1fr 4fr;
+	grid-template-areas: "side main";
+	grid-gap: 0.3em;
+	margin: 40px;
 
-  &__main-section {
-    grid-template-areas: "main";
-  }
+	&__main-section {
+		grid-template-areas: "main";
+	}
 
-  @media only screen and (max-width: 800px) {
-    display: block;
-  }
+	@media only screen and (max-width: 800px) {
+		display: block;
+	}
 }

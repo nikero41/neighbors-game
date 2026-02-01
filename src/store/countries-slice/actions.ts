@@ -1,12 +1,12 @@
-import { countriesActions } from "./reducers";
-import { ActionCreatorThunk } from "types/store.types";
-
+import { getAxiosError } from "helpers/axios";
 import {
 	fetchCountries,
 	filterCountries,
 	pickMainCountry,
 } from "helpers/country";
-import { getAxiosError } from "helpers/axios";
+import { ActionCreatorThunk } from "types/store.types";
+
+import { countriesActions } from "./reducers";
 
 export const fetchAllCountries: ActionCreatorThunk<
 	ReturnType<typeof getAxiosError>
@@ -28,7 +28,7 @@ export const changeMainCountry: ActionCreatorThunk =
 
 		const mainCountry = pickMainCountry(
 			borderedCountries,
-			state.countries.history
+			state.countries.history,
 		);
 
 		dispatch(countriesActions.storeMainCountry(mainCountry));

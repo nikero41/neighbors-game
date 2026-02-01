@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
-import styles from "./CountryCard.module.scss";
-
-import { useSelector, useDispatch } from "helpers/store";
-import { roundActions } from "store/round-info-slice/reducers";
-
-import type ICountry from "types/country-api.types.js";
-import { getEmojiForCountry } from "helpers/util";
-
+import { useEffect, useState } from "react";
 import Card from "components/UI/Card";
+import { useDispatch, useSelector } from "helpers/store";
+import { getEmojiForCountry } from "helpers/util";
+import { roundActions } from "store/round-info-slice/reducers";
+import type ICountry from "types/country-api.types.js";
+
+import styles from "./CountryCard.module.scss";
 
 const cardStateOptions = {
 	correct: "correct",
@@ -36,7 +34,7 @@ const CountryCard: React.FC<Props> = props => {
 	}, [roundInfoSlice.hasGameEnded]);
 
 	const isCardCorrect = countrySlice.mainCountry?.borders.includes(
-		props.country.cca3
+		props.country.cca3,
 	);
 
 	const handleCardClick = () => {

@@ -1,8 +1,8 @@
 import { useReducer } from "react";
-import styles from "../components/UI/Modal.module.scss";
 
-import Modal from "../components/UI/Modal";
 import Button from "../components/UI/Button";
+import Modal from "../components/UI/Modal";
+import styles from "../components/UI/Modal.module.scss";
 
 export enum errorActions {
 	"ERROR",
@@ -11,7 +11,7 @@ export enum errorActions {
 
 const errorReducer = (
 	state: string,
-	action: { type: errorActions; error?: Error }
+	action: { type: errorActions; error?: Error },
 ) => {
 	switch (action.type) {
 		case errorActions.ERROR:

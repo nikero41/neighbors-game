@@ -1,36 +1,36 @@
 @import "/src/styles/variables";
 
 .btn {
-  font-size: 0.75em;
-  text-align: center;
-  justify-content: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: inline-block;
-  border-radius: $box-radius;
-  margin: 10px;
-  margin-bottom: 20px;
-  box-sizing: content-box; /* todo γιατι? */
+	font-size: 0.75em;
+	text-align: center;
+	justify-content: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: inline-block;
+	border-radius: $box-radius;
+	margin: 10px;
+	margin-bottom: 20px;
+	box-sizing: content-box; /* todo γιατι? */
 
-  &--active {
-    cursor: pointer;
-    background-color: #fcfcfc;
-    color: rgb(78, 78, 78);
+	&--active {
+		cursor: pointer;
+		background-color: #fcfcfc;
+		color: rgb(78, 78, 78);
 
-    &:hover {
-      background-color: lightgray;
-      color: grey;
-    }
-  }
+		&:hover {
+			background-color: lightgray;
+			color: grey;
+		}
+	}
 
-  &--inactive {
-    cursor: unset;
-    color: rgb(78, 78, 78);
-    background-color: rgb(201, 201, 201);
-  }
+	&--inactive {
+		cursor: unset;
+		color: rgb(78, 78, 78);
+		background-color: rgb(201, 201, 201);
+	}
 }
 
 #btn-next-round {
-  margin-top: auto;
-  color: gray;
+	margin-top: auto;
+	color: gray;
 }

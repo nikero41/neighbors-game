@@ -1,10 +1,9 @@
-import styles from "./Sidebar.module.scss";
-
-import { useSelector, useDispatch } from "helpers/store";
-import { roundActions } from "store/round-info-slice/reducers";
-import { changeMainCountry } from "store/countries-slice/actions";
-
 import Button from "components/UI/Button";
+import { useDispatch, useSelector } from "helpers/store";
+import { changeMainCountry } from "store/countries-slice/actions";
+import { roundActions } from "store/round-info-slice/reducers";
+
+import styles from "./Sidebar.module.scss";
 
 const Sidebar = () => {
 	const roundInfoSlice = useSelector(state => state.roundInfo);

@@ -1,7 +1,7 @@
-import { createPortal } from "react-dom";
-import styles from "./Modal.module.scss";
-
 import Card from "components/UI/Card";
+import { createPortal } from "react-dom";
+
+import styles from "./Modal.module.scss";
 
 const Backdrop = () => {
 	return <div className={styles["modal__backdrop"]}></div>;
@@ -37,7 +37,7 @@ const Modal: React.FC<Props> = props => {
 	if (props.teleport) {
 		return createPortal(
 			modal,
-			document.querySelector<HTMLDivElement>("#overlays")!
+			document.querySelector<HTMLDivElement>("#overlays")!,
 		);
 	}
 	return modal;

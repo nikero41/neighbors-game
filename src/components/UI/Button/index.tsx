@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import styles from "./Button.module.scss";
 
 interface Props {
@@ -20,7 +21,7 @@ const Button: React.FC<Props> = ({
 			className={`${styles["btn"]} ${
 				active ? styles["btn--active"] : styles["btn--inactive"]
 			} ${className ?? ""}`}
-			onClick={active ? onClick ?? undefined : undefined}
+			onClick={active ? (onClick ?? undefined) : undefined}
 			{...buttonProperties}
 		>
 			{children}
