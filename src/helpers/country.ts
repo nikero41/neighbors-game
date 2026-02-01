@@ -7,7 +7,8 @@ import { shuffleArray } from "helpers/util";
 export const fetchCountries = async () => {
 	try {
 		const response = await axios.get<ICountry[]>(
-			"https://restcountries.com/v3.1/all"
+			"https://restcountries.com/v3.1/all",
+			{ params: { fields: "name,cca2,cca3,borders" } }
 		);
 
 		return response.data;
