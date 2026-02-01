@@ -4,7 +4,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write src",
+    "lint": "npm run lint:eslint; npm run lint:ts",
+    "lint:eslint": "eslint src",
+    "lint:ts": "tsc --noEmit"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
