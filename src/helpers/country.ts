@@ -54,8 +54,8 @@ export const generateCountriesGrid = (
 		(acc, country) => {
 			if (country.cca3 === mainCountry.cca3) return acc;
 
-			const isBoardCountry = mainCountry.borders.includes(country.cca3);
-			if (isBoardCountry) {
+			const isBorderCountry = mainCountry.borders.includes(country.cca3);
+			if (isBorderCountry) {
 				acc.borderCountries.push(country);
 				return acc;
 			}

@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component<
 			return (
 				<Modal
 					teleport
-					header="An error occured"
+					header="An error occurred"
 					body={this.state.error.message}
 				/>
 			);
