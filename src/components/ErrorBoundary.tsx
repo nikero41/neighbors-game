@@ -21,11 +21,9 @@ export class ErrorBoundary extends Component<
 	override render() {
 		if (this.state.error) {
 			return (
-				<Modal
-					teleport
-					header="An error occurred"
-					body={this.state.error.message}
-				/>
+				<Modal teleport header="An error occurred">
+					{this.state.error.message}
+				</Modal>
 			);
 		}
 

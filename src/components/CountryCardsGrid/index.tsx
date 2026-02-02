@@ -22,14 +22,11 @@ export const CountryCardsGrid = ({ countries }: { countries: Country[] }) => {
 	return (
 		<section className={styles["neighbours"]}>
 			{stage !== GameStage.OnGoing && (
-				<Modal
-					header="Game over"
-					body={
-						stage === GameStage.Won
-							? "You won! Congratulations!"
-							: "You lost. Try again!"
-					}
-				/>
+				<Modal header="Game over">
+					{stage === GameStage.Won
+						? "You won! Congratulations!"
+						: "You lost. Try again!"}
+				</Modal>
 			)}
 			{gridCountries.map(country => (
 				<CountryCard key={`${round}-${country.cca3}`} country={country} />
