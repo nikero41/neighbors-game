@@ -10,7 +10,8 @@
 		"format": "prettier --write src",
 		"lint": "npm run --silent lint:eslint; npm run --silent lint:ts",
 		"lint:eslint": "eslint src",
-		"lint:ts": "tsc --noEmit"
+		"lint:ts": "tsc --noEmit",
+		"clean": "rimraf dist node_modules"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.90.20",
@@ -41,6 +42,7 @@
 		"eslint-plugin-react-hooks": "^7.0.1",
 		"globals": "^17.3.0",
 		"prettier-plugin-tailwindcss": "^0.7.2",
+		"rimraf": "^6.1.2",
 		"sass": "^1.47.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.48.1",
