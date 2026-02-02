@@ -1,7 +1,6 @@
 import { useGameState } from "@/components/GameStateContext";
 import { Button } from "@/components/ui/Button";
 import { GameStage } from "@/helpers/gameState";
-import styles from "./Sidebar.module.scss";
 
 export const Sidebar = () => {
 	const {
@@ -15,31 +14,30 @@ export const Sidebar = () => {
 	};
 
 	return (
-		<aside className={styles["sidebar"]} id="sidebar">
-			<h1>
+		<aside className="mb-1.5 flex min-w-44 flex-col rounded-lg bg-primary px-6 text-white md:mb-0">
+			<h1 className="mt-5 text-3xl font-bold">
 				Find
 				<br />
 				the Neighbors
 			</h1>
 
-			<div className={styles["sidebar__info-container"]}>
-				<p className={styles["sidebar__info-container__label"]}>Round:</p>
-				<p className={styles["sidebar__info-container__value"]}>{round}</p>
-				<p className={styles["sidebar__info-container__label"]}>Score:</p>
-				<p className={styles["sidebar__info-container__value"]} id="score">
-					{score}
-				</p>
+			<div className="mt-10 grid grid-cols-2 grid-rows-2 gap-6">
+				<p>Round:</p>
+				<p className="ml-auto">{round}</p>
+
+				<p>Score:</p>
+				<p className="ml-auto">{score}</p>
 			</div>
 
 			<Button
-				className={styles["sidebar__btn"]}
+				className="mt-auto mb-5"
 				disabled={stage !== GameStage.Won}
 				onClick={gameAction.nextRound}
 			>
 				Next Country
 			</Button>
 
-			<Button className={styles["sidebar__btn"]} onClick={handleNewGameClick}>
+			<Button className="mb-5" onClick={handleNewGameClick}>
 				New Game
 			</Button>
 		</aside>
