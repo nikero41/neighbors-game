@@ -28,7 +28,7 @@ export default defineConfig(
 		rules: {
 			/* Enforce camelCase */
 			camelcase: ["error", { allow: ["required_error"] }],
-			/* We allow console for debug and error reporting */
+			/* Avoid console.log */
 			"no-console": "error",
 			/* Allow void for async functions */
 			"no-void": ["error", { allowAsStatement: true }],
