@@ -15,9 +15,13 @@
 		"clean": "rimraf dist node_modules"
 	},
 	"dependencies": {
+		"@tailwindcss/vite": "^4.1.18",
 		"@tanstack/react-query": "^5.90.20",
+		"clsx": "^2.1.1",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
+		"tailwind-merge": "^3.4.0",
+		"tailwindcss": "^4.1.18",
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
@@ -31,7 +35,6 @@
 		"@tanstack/eslint-plugin-query": "^5.91.2",
 		"@total-typescript/ts-reset": "^0.6.1",
 		"@total-typescript/tsconfig": "^1.0.4",
-		"@types/css-modules": "^1.0.5",
 		"@types/react": "^19.2.10",
 		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^5.1.2",
@@ -50,7 +53,6 @@
 		"lint-staged": "^16.2.7",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"rimraf": "^6.1.2",
-		"sass": "^1.47.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.48.1",
 		"vite": "^7.3.1",
