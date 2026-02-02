@@ -11,13 +11,11 @@ if (!overlaysDivElement) throw new Error("overlaysDivElement not found");
 export const Modal = ({
 	teleport,
 	header,
-	body,
 	actions,
 	children,
 }: {
 	teleport?: boolean;
 	header?: string;
-	body?: React.ReactNode | string;
 	actions?: React.ReactNode;
 	children?: React.ReactNode;
 }) => {
@@ -30,7 +28,7 @@ export const Modal = ({
 					<header className={styles["modal__header"]}>{header}</header>
 				)}
 
-				<main className={styles["modal__body"]}>{body ?? children}</main>
+				<main className={styles["modal__body"]}>{children}</main>
 
 				{actions && (
 					<footer className={styles["modal__actions"]}>{actions}</footer>

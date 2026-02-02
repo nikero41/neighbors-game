@@ -1,4 +1,4 @@
-import type { IMainCountry } from "@/helpers/country";
+import type { Country } from "./country";
 
 export interface GameState {
 	round: number;
@@ -6,12 +6,12 @@ export interface GameState {
 	rightAnswers: number;
 	wrongAnswers: number;
 	stage: GameStage;
-	mainCountry: IMainCountry | null;
+	mainCountry: Country | null;
 }
 
 export type GameStatePayload =
-	| { type: "nextRound"; mainCountry: IMainCountry }
-	| { type: "resetRound"; mainCountry: IMainCountry }
+	| { type: "nextRound"; mainCountry: Country }
+	| { type: "resetRound"; mainCountry: Country }
 	| { type: "submitCountry"; isCorrect: boolean };
 
 export const gameStateReducer = (

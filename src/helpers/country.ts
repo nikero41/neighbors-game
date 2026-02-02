@@ -2,12 +2,6 @@ import * as z from "zod/mini";
 
 import { shuffleArray } from "@/helpers/util";
 
-export type Country = z.infer<typeof CountrySchema>;
-
-export interface IMainCountry extends Country {
-	borders: string[];
-}
-
 export const fetchCountries = async ({ signal }: { signal?: AbortSignal }) => {
 	const response = await fetch(
 		`https://restcountries.com/v3.1/all?${new URLSearchParams({
@@ -27,13 +21,15 @@ export const CountrySchema = z.object({
 	name: z.object({ common: z.string() }),
 	cca2: z.string(),
 	cca3: z.string(),
-	borders: z.optional(z.array(z.string())),
+	borders: z.array(z.string()),
 });
+
+export type Country = z.infer<typeof CountrySchema>;
 
 export const pickMainCountry = (
 	countries: Country[],
 	history: string[],
-): IMainCountry => {
+): Country => {
 	const countriesWithBorders = countries.filter(
 		(country: Country) =>
 			Array.isArray(country.borders) &&
@@ -47,12 +43,12 @@ export const pickMainCountry = (
 		];
 	if (!mainCountry) throw new Error("Failed to pick random country");
 
-	return mainCountry as IMainCountry;
+	return mainCountry;
 };
 
 export const generateCountriesGrid = (
 	countries: Country[],
-	mainCountry: IMainCountry,
+	mainCountry: Country,
 ) => {
 	const { borderCountries, nonBorderCountries } = countries.reduce(
 		(acc, country) => {
