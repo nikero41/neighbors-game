@@ -194,7 +194,7 @@ export default defineConfig(
 			/* Disable PropTypes */
 			"react/prop-types": "off",
 			/* Explicitly set filename if it includes jsx */
-			"react/jsx-filename-extension": ["warn", { extensions: [".jsx", "tsx"] }],
+			"react/jsx-filename-extension": ["warn", { extensions: [".jsx", ".tsx"] }],
 			/* Make all components arrow functions */
 			"react/function-component-definition": [
 				"warn",
