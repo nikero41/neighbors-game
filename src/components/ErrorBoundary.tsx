@@ -6,7 +6,10 @@ interface State {
 	error: Error | null;
 }
 
-export class ErrorBoundary extends Component<{ children: React.ReactNode }> {
+export class ErrorBoundary extends Component<
+	{ children: React.ReactNode },
+	State
+> {
 	override state: State = {
 		error: null,
 	};

@@ -11,7 +11,7 @@
 	border-radius: $box-radius;
 	margin: 10px;
 	margin-bottom: 20px;
-	box-sizing: content-box; /* todo γιατι? */
+	box-sizing: content-box;
 
 	&--active {
 		cursor: pointer;
