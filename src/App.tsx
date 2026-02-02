@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 
-import "./global.scss";
 import "./globals.css";
 
 import { CountryCardsGrid } from "@/components/CountryCardsGrid";
@@ -18,9 +17,9 @@ const App = () => {
 
 	return (
 		<GameStateProvider countries={countries}>
-			<div className="game-panel">
+			<div className="m-10 grid-cols-[1fr_4fr] gap-1.5 md:grid">
 				<Sidebar />
-				<main>
+				<main className="space-y-1.5">
 					<Title />
 					<ProgressBar />
 					{isSuccess && <CountryCardsGrid countries={countries} />}

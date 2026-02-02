@@ -6,3 +6,8 @@
 	--color-primary: #f47b20;
 	--color-secondary: #2e3192;
 }
+
+@font-face {
+	font-family: "TwemojiMozilla";
+	src: url("/TwemojiMozilla.ttf");
+}
