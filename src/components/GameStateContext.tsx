@@ -64,7 +64,7 @@ export const GameStateProvider = ({
 
 				const isCorrect = gameState.mainCountry?.borders.includes(country.cca3);
 				dispatch({ type: "submitCountry", isCorrect: !!isCorrect });
-				return { correct: isCorrect };
+				return { correct: !!isCorrect };
 			},
 		}),
 		[countries, dispatch, history, setHistory, gameState.mainCountry?.borders],

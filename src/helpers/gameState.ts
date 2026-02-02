@@ -18,7 +18,6 @@ export const gameStateReducer = (
 	state: GameState,
 	action: GameStatePayload,
 ) => {
-	console.log("🪚 action:", action);
 	switch (action.type) {
 		case "nextRound": {
 			return {
@@ -68,8 +67,6 @@ export const gameStateReducer = (
 
 			return newState;
 		}
-		default:
-			return state;
 	}
 };
 

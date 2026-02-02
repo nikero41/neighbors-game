@@ -2,8 +2,10 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 	for (let length = array.length - 1; length > 0; length--) {
 		const elementToBeSwaped = Math.floor(Math.random() * length);
 
-		const temp = array[length];
-		array[length] = array[elementToBeSwaped];
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		const temp = array[length]!;
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		array[length] = array[elementToBeSwaped]!;
 		array[elementToBeSwaped] = temp;
 	}
 
