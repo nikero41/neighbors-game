@@ -1,13 +1,14 @@
 {
 	"name": "neighbors-game",
 	"version": "2.0.0",
+	"license": "MIT",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"format": "prettier --write src",
-		"lint": "npm run lint:eslint; npm run lint:ts",
+		"lint": "npm run --silent lint:eslint; npm run --silent lint:ts",
 		"lint:eslint": "eslint src",
 		"lint:ts": "tsc --noEmit"
 	},
