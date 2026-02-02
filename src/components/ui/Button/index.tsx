@@ -1,17 +1,19 @@
 import styles from "./Button.module.scss";
 
 export const Button = ({
-	active = true,
+	disabled,
 	children,
 	onClick,
 	className = "",
 	...restProps
-}: { active?: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
 	<button
 		className={`${styles["btn"] ?? ""} ${
-			active ? (styles["btn--active"] ?? "") : (styles["btn--inactive"] ?? "")
+			!disabled
+				? (styles["btn--active"] ?? "")
+				: (styles["btn--inactive"] ?? "")
 		} ${className}`}
-		onClick={active ? (onClick ?? undefined) : undefined}
+		onClick={onClick}
 		{...restProps}
 	>
 		{children}

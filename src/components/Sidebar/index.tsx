@@ -33,7 +33,7 @@ export const Sidebar = () => {
 
 			<Button
 				className={styles["sidebar__btn"]}
-				active={stage === GameStage.Won}
+				disabled={stage !== GameStage.Won}
 				onClick={gameAction.nextRound}
 			>
 				Next Country
