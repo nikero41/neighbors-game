@@ -54,7 +54,7 @@ export const GameStateProvider = ({
 		resetRound: () => {
 			if (!countries) return;
 			const mainCountry = pickMainCountry(countries, history);
-			setHistory(prevValue => [...prevValue, mainCountry.name.common]);
+			setHistory([mainCountry.name.common]);
 			dispatch({ type: "resetRound", mainCountry });
 		},
 		submitCountry: country => {
