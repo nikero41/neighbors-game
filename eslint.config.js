@@ -182,6 +182,9 @@ export default defineConfig(
 		rules: {
 			"better-tailwindcss/enforce-consistent-line-wrapping": "off",
 		},
+		settings: {
+			"better-tailwindcss": { entryPoint: "./src/globals.css" },
+		},
 	},
 	{
 		name: "Import React",

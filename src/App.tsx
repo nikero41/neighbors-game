@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import "./global.scss";
+import "./globals.css";
 
 import { CountryCardsGrid } from "@/components/CountryCardsGrid";
 import { GameStateProvider } from "@/components/GameStateContext";

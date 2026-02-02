@@ -26,4 +26,5 @@ export default {
 		"^[.]",
 	],
 	tailwindFunctions: ["clsx", "cn", "cva"],
+	tailwindStylesheet: "./src/globals.css",
 };

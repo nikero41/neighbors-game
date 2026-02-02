@@ -1,3 +1,6 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export const shuffleArray = <T>(array: T[]): T[] => {
 	for (let length = array.length - 1; length > 0; length--) {
 		const elementToBeSwaped = Math.floor(Math.random() * length);
@@ -19,3 +22,5 @@ export const getEmojiForCountry = (countryCode: string) => {
 
 	return String.fromCodePoint(...codeArray.map(c => c.charCodeAt(0) + OFFSET));
 };
+
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
