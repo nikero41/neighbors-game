@@ -1,0 +1,56 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - name: Cache Node.js modules
+        id: deps-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('./package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.deps-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint:eslint
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - name: Cache Node.js modules
+        id: deps-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('./package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.deps-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Check types
+        run: npm run lint:ts

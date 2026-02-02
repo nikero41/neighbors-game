@@ -1,0 +1,24 @@
+@use "/src/styles/variables" as *;
+
+.progress-bar {
+	border-radius: $box-radius;
+	background-color: lightgray;
+	height: 1.5em;
+	overflow: hidden;
+	z-index: 2;
+
+	&__persentage {
+		border-top-right-radius: 0%;
+		border-bottom-right-radius: 0%;
+		width: 0;
+		background-color: #2e3192;
+		height: 100%;
+		transition: width ease-in-out 150ms;
+	}
+
+	@media only screen and (max-width: 800px) {
+		position: -webkit-sticky;
+		position: sticky;
+		top: 5px;
+	}
+}

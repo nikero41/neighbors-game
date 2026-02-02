@@ -1,75 +1,75 @@
-import axios, { AxiosError } from "axios";
-import { getAxiosError } from "helpers/axios";
-import type ICountry from "types/country-api.types";
-import { IMainCountry } from "types/country.types";
-import { shuffleArray } from "helpers/util";
+import * as z from "zod/mini";
 
-export const fetchCountries = async () => {
-	try {
-		const response = await axios.get<ICountry[]>(
-			"https://restcountries.com/v3.1/all",
-			{ params: { fields: "name,cca2,cca3,borders" } }
-		);
+import { shuffleArray } from "@/helpers/util";
 
-		return response.data;
-	} catch (error) {
-		return { errors: getAxiosError(error as AxiosError) };
-	}
-};
-
-export const pickMainCountry = (
-	countries: ICountry[],
-	history: string[]
-): IMainCountry => {
-	try {
-		const mainCountry = shuffleArray<ICountry>([...countries])[0];
-
-		if (
-			Array.isArray(mainCountry.borders) &&
-			mainCountry.borders.length === 0
-		) {
-			throw "No borders found";
-		}
-
-		const isInHistory = history.includes(mainCountry.name.common);
-		if (isInHistory) {
-			throw "Country already in history";
-		}
-
-		return mainCountry as IMainCountry;
-	} catch (error) {
-		if (error instanceof Error) {
-			throw error;
-		}
-		return pickMainCountry(countries, history);
-	}
-};
-
-export const filterCountries = (countries: ICountry[]): ICountry[] =>
-	countries.filter((country: ICountry) =>
-		Array.isArray(country.borders) ? country.borders.length > 0 : false
+export const fetchCountries = async ({ signal }: { signal?: AbortSignal }) => {
+	const response = await fetch(
+		`https://restcountries.com/v3.1/all?${new URLSearchParams({
+			fields: "name,cca2,cca3,borders",
+		}).toString()}`,
+		{ signal },
 	);
 
-export const cardPick = (
-	mainCountry: IMainCountry,
-	countries: ICountry[]
-): ICountry[] => {
-	const selectedCountries = [
-		...countries.filter(country => mainCountry.borders.includes(country.cca3)),
-	];
-	const shuffledCountries = shuffleArray<ICountry>([...countries]);
-
-	for (
-		let i = 0;
-		selectedCountries.length < mainCountry.borders!.length * 3;
-		i++
-	) {
-		if (
-			!mainCountry.borders?.includes(shuffledCountries[i].cca3) &&
-			!(shuffledCountries[i] === mainCountry)
-		)
-			selectedCountries.push(shuffledCountries[i]);
+	if (!response.ok) {
+		throw new Error("Error fetching countries");
 	}
 
-	return shuffleArray(selectedCountries);
+	return z.array(CountrySchema).parse(await response.json());
+};
+
+export const CountrySchema = z.object({
+	name: z.object({ common: z.string() }),
+	cca2: z.string(),
+	cca3: z.string(),
+	borders: z.array(z.string()),
+});
+
+export type Country = z.infer<typeof CountrySchema>;
+
+export const pickMainCountry = (
+	countries: Country[],
+	history: string[],
+): Country => {
+	const countriesWithBorders = countries.filter(
+		(country: Country) =>
+			Array.isArray(country.borders) &&
+			country.borders.length > 0 &&
+			!history.includes(country.name.common),
+	);
+
+	const mainCountry =
+		countriesWithBorders[
+			Math.floor(Math.random() * countriesWithBorders.length)
+		];
+	if (!mainCountry) throw new Error("Failed to pick random country");
+
+	return mainCountry;
+};
+
+export const generateCountriesGrid = (
+	countries: Country[],
+	mainCountry: Country,
+) => {
+	const { borderCountries, nonBorderCountries } = countries.reduce(
+		(acc, country) => {
+			if (country.cca3 === mainCountry.cca3) return acc;
+
+			const isBorderCountry = mainCountry.borders.includes(country.cca3);
+			if (isBorderCountry) {
+				acc.borderCountries.push(country);
+				return acc;
+			}
+
+			acc.nonBorderCountries.push(country);
+			return acc;
+		},
+		{ borderCountries: [] as Country[], nonBorderCountries: [] as Country[] },
+	);
+
+	const shuffledCountries = shuffleArray(nonBorderCountries).slice(
+		0,
+		mainCountry.borders.length * 2,
+	);
+
+	return shuffleArray([...borderCountries, ...shuffledCountries]);
 };

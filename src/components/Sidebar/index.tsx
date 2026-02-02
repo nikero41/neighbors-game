@@ -1,25 +1,17 @@
+import { useGameState } from "@/components/GameStateContext";
+import { Button } from "@/components/ui/Button";
+import { GameStage } from "@/helpers/gameState";
 import styles from "./Sidebar.module.scss";
 
-import { useSelector, useDispatch } from "helpers/store";
-import { roundActions } from "store/round-info-slice/reducers";
-import { changeMainCountry } from "store/countries-slice/actions";
-
-import Button from "components/UI/Button";
-
-const Sidebar = () => {
-	const roundInfoSlice = useSelector(state => state.roundInfo);
-	const dispatch = useDispatch();
-
-	const handleNextRoundClick = () => {
-		dispatch(roundActions.nextRound());
-		dispatch(changeMainCountry());
-	};
+export const Sidebar = () => {
+	const {
+		gameState: { round, score, stage },
+		gameAction,
+	} = useGameState();
 
 	const handleNewGameClick = () => {
 		if (!confirm("Are you sure? You will lose all your progress!")) return;
-
-		dispatch(roundActions.resetRound());
-		dispatch(changeMainCountry());
+		gameAction.resetRound();
 	};
 
 	return (
@@ -29,28 +21,27 @@ const Sidebar = () => {
 				<br />
 				the Neighbors
 			</h1>
+
 			<div className={styles["sidebar__info-container"]}>
 				<p className={styles["sidebar__info-container__label"]}>Round:</p>
-				<p className={styles["sidebar__info-container__value"]}>
-					{roundInfoSlice.round}
-				</p>
+				<p className={styles["sidebar__info-container__value"]}>{round}</p>
 				<p className={styles["sidebar__info-container__label"]}>Score:</p>
 				<p className={styles["sidebar__info-container__value"]} id="score">
-					{roundInfoSlice.score}
+					{score}
 				</p>
 			</div>
+
 			<Button
 				className={styles["sidebar__btn"]}
-				active={roundInfoSlice.hasGameEnded}
-				onClick={handleNextRoundClick}
+				disabled={stage !== GameStage.Won}
+				onClick={gameAction.nextRound}
 			>
 				Next Country
 			</Button>
+
 			<Button className={styles["sidebar__btn"]} onClick={handleNewGameClick}>
 				New Game
 			</Button>
 		</aside>
 	);
 };
-
-export default Sidebar;

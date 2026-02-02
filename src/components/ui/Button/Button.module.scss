@@ -1,0 +1,37 @@
+@use "/src/styles/variables" as *;
+
+.btn {
+	font-size: 0.75em;
+	text-align: center;
+	justify-content: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: inline-block;
+	border: none;
+	border-radius: $box-radius;
+	margin: 10px;
+	margin-bottom: 20px;
+	box-sizing: content-box;
+
+	&--active {
+		cursor: pointer;
+		background-color: #fcfcfc;
+		color: rgb(78, 78, 78);
+
+		&:hover {
+			background-color: lightgray;
+			color: grey;
+		}
+	}
+
+	&--inactive {
+		cursor: unset;
+		color: rgb(78, 78, 78);
+		background-color: rgb(201, 201, 201);
+	}
+}
+
+#btn-next-round {
+	margin-top: auto;
+	color: gray;
+}
