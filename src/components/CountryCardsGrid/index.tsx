@@ -3,9 +3,9 @@ import { useMemo, useState } from "react";
 import { useGameState } from "@/components/GameStateContext";
 import { Card } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
-import type { Country } from "@/helpers/country";
+import { generateCountriesGrid, type Country } from "@/helpers/country";
 import { GameStage } from "@/helpers/gameState";
-import { getEmojiForCountry, shuffleArray } from "@/helpers/util";
+import { getEmojiForCountry } from "@/helpers/util";
 import cardStyles from "./CountryCard.module.scss";
 import styles from "./CountryCardsGrid.module.scss";
 
@@ -15,30 +15,8 @@ export const CountryCardsGrid = ({ countries }: { countries: Country[] }) => {
 	} = useGameState();
 
 	const gridCountries = useMemo(() => {
-		if (!mainCountry || !countries) return [];
-
-		const selectedCountries = [
-			...countries.filter(country =>
-				mainCountry.borders.includes(country.cca3),
-			),
-		];
-		const shuffledCountries = shuffleArray<Country>([...countries]);
-
-		for (
-			let i = 0;
-			selectedCountries.length < mainCountry.borders.length * 3;
-			i++
-		) {
-			const randomCountry = shuffledCountries[i];
-			if (!randomCountry) throw new Error("Failed to pick random country");
-			if (
-				!mainCountry.borders.includes(randomCountry.cca3) &&
-				!(shuffledCountries[i] === mainCountry)
-			)
-				selectedCountries.push(randomCountry);
-		}
-
-		return shuffleArray(selectedCountries);
+		if (!mainCountry) return [];
+		return generateCountriesGrid(countries, mainCountry);
 	}, [mainCountry, countries]);
 
 	return (
