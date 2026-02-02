@@ -1,32 +1,47 @@
 {
-  "name": "neighbors-game",
-  "version": "2.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "format": "prettier --write src",
-    "lint": "npm run lint:eslint; npm run lint:ts",
-    "lint:eslint": "eslint src",
-    "lint:ts": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.7.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^7.2.6"
-  },
-  "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
-    "@types/axios": "^0.14.0",
-    "@types/css-modules": "^1.0.2",
-    "@types/react": "^17.0.38",
-    "@types/react-dom": "^17.0.11",
-    "@vitejs/plugin-react": "^1.1.4",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "sass": "^1.47.0",
-    "typescript": "^4.5.4",
-    "vite": "^2.7.10",
-    "vite-tsconfig-paths": "^3.4.1"
-  }
+	"name": "neighbors-game",
+	"version": "2.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"format": "prettier --write src",
+		"lint": "npm run lint:eslint; npm run lint:ts",
+		"lint:eslint": "eslint src",
+		"lint:ts": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@reduxjs/toolkit": "^1.7.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-redux": "^7.2.6"
+	},
+	"devDependencies": {
+		"@eslint/compat": "^2.0.0",
+		"@eslint/js": "^9.36.0",
+		"@eslint/json": "^0.14.0",
+		"@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+		"@tanstack/eslint-plugin-query": "^5.91.2",
+		"@types/axios": "^0.14.0",
+		"@types/css-modules": "^1.0.2",
+		"@types/react": "^17.0.38",
+		"@types/react-dom": "^17.0.11",
+		"@vitejs/plugin-react": "^1.1.4",
+		"eslint": "^9.36.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-import-resolver-typescript": "^4.4.4",
+		"eslint-plugin-better-tailwindcss": "^3.8.0",
+		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-import-zod": "^1.2.1",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"eslint-plugin-react": "7.37.5",
+		"eslint-plugin-react-hooks": "^7.0.1",
+		"globals": "^16.5.0",
+		"prettier-plugin-tailwindcss": "^0.7.2",
+		"sass": "^1.47.0",
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.48.1",
+		"vite": "^2.7.10",
+		"vite-tsconfig-paths": "^3.4.1"
+	}
 }
