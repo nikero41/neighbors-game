@@ -1,12 +1,13 @@
 import { Component } from "react";
-import Modal from "components/UI/Modal";
+
+import { Modal } from "@/components/ui/Modal";
 
 interface State {
 	error: Error | null;
 }
 
-class ErrorBoundary extends Component {
-	state: State = {
+export class ErrorBoundary extends Component<{ children: React.ReactNode }> {
+	override state: State = {
 		error: null,
 	};
 
@@ -14,7 +15,7 @@ class ErrorBoundary extends Component {
 		return { error };
 	}
 
-	render() {
+	override render() {
 		if (this.state.error) {
 			return (
 				<Modal
@@ -28,5 +29,3 @@ class ErrorBoundary extends Component {
 		return this.props.children;
 	}
 }
-
-export default ErrorBoundary;

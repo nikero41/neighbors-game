@@ -1,6 +1,6 @@
 import styles from "./Card.module.scss";
 
-const Card = ({
+export const Card = ({
 	className,
 	children,
 	...restProps
@@ -12,5 +12,3 @@ const Card = ({
 		{children}
 	</div>
 );
-
-export default Card;

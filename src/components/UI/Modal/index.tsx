@@ -1,11 +1,14 @@
-import Card from "components/UI/Card";
 import { createPortal } from "react-dom";
 
+import { Card } from "@/components/ui/Card";
 import styles from "./Modal.module.scss";
 
 const Backdrop = () => <div className={styles["modal__backdrop"]} />;
 
-const Modal = ({
+const overlaysDivElement = document.querySelector<HTMLDivElement>("#overlays");
+if (!overlaysDivElement) throw new Error("overlaysDivElement not found");
+
+export const Modal = ({
 	teleport,
 	header,
 	body,
@@ -37,12 +40,7 @@ const Modal = ({
 	);
 
 	if (teleport) {
-		return createPortal(
-			modal,
-			document.querySelector<HTMLDivElement>("#overlays")!,
-		);
+		return createPortal(modal, overlaysDivElement);
 	}
 	return modal;
 };
-
-export default Modal;

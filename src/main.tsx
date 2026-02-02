@@ -1,9 +1,8 @@
 import { StrictMode } from "react";
-import ErrorBoundary from "components/ErrorBoundary";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-import store from "store";
 
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import App from "./App";
 
 const rootElement = document.getElementById("root");
@@ -11,12 +10,14 @@ if (!rootElement) throw new Error("Root element not found");
 
 const root = createRoot(rootElement);
 
+const client = new QueryClient();
+
 root.render(
 	<StrictMode>
 		<ErrorBoundary>
-			<Provider store={store}>
+			<QueryClientProvider client={client}>
 				<App />
-			</Provider>
+			</QueryClientProvider>
 		</ErrorBoundary>
 	</StrictMode>,
 );

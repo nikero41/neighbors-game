@@ -13,10 +13,10 @@
 		"lint:ts": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@reduxjs/toolkit": "^1.7.1",
+		"@tanstack/react-query": "^5.90.20",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
-		"react-redux": "^7.2.6"
+		"zod": "^4.3.6"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.0.0",
@@ -24,7 +24,6 @@
 		"@eslint/json": "^1.0.0",
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.0",
 		"@tanstack/eslint-plugin-query": "^5.91.2",
-		"@types/axios": "^0.14.0",
 		"@total-typescript/ts-reset": "^0.6.1",
 		"@total-typescript/tsconfig": "^1.0.4",
 		"@types/css-modules": "^1.0.5",
