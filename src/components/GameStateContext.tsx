@@ -3,7 +3,6 @@ import {
 	useContext,
 	useEffect,
 	useEffectEvent,
-	useMemo,
 	useReducer,
 	useState,
 } from "react";
@@ -45,30 +44,27 @@ export const GameStateProvider = ({
 		mainCountry: null,
 	});
 
-	const gameAction = useMemo<GameAction>(
-		() => ({
-			nextRound: () => {
-				if (!countries) return;
-				const mainCountry = pickMainCountry(countries, history);
-				setHistory(prevValue => [...prevValue, mainCountry.name.common]);
-				dispatch({ type: "nextRound", mainCountry });
-			},
-			resetRound: () => {
-				if (!countries) return;
-				const mainCountry = pickMainCountry(countries, history);
-				setHistory(prevValue => [...prevValue, mainCountry.name.common]);
-				dispatch({ type: "resetRound", mainCountry });
-			},
-			submitCountry: country => {
-				if (!countries) return { correct: false };
+	const gameAction: GameAction = {
+		nextRound: () => {
+			if (!countries) return;
+			const mainCountry = pickMainCountry(countries, history);
+			setHistory(prevValue => [...prevValue, mainCountry.name.common]);
+			dispatch({ type: "nextRound", mainCountry });
+		},
+		resetRound: () => {
+			if (!countries) return;
+			const mainCountry = pickMainCountry(countries, history);
+			setHistory(prevValue => [...prevValue, mainCountry.name.common]);
+			dispatch({ type: "resetRound", mainCountry });
+		},
+		submitCountry: country => {
+			if (!countries) return { correct: false };
 
-				const isCorrect = gameState.mainCountry?.borders.includes(country.cca3);
-				dispatch({ type: "submitCountry", isCorrect: !!isCorrect });
-				return { correct: !!isCorrect };
-			},
-		}),
-		[countries, dispatch, history, setHistory, gameState.mainCountry?.borders],
-	);
+			const isCorrect = gameState.mainCountry?.borders.includes(country.cca3);
+			dispatch({ type: "submitCountry", isCorrect: !!isCorrect });
+			return { correct: !!isCorrect };
+		},
+	};
 
 	const setupGame = useEffectEvent(() => {
 		if (!countries) return;

@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import "./global.scss";
@@ -30,4 +29,4 @@ const App = () => {
 	);
 };
 
-export default memo(App);
+export default App;

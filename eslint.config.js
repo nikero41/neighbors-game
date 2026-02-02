@@ -88,6 +88,7 @@ export default defineConfig(
 					allowDefaultProject: [
 						"lint-staged.config.ts",
 						"commitlint.config.ts",
+						"vite.config.ts",
 					],
 				},
 			},
