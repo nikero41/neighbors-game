@@ -20,6 +20,7 @@ export const gameStateReducer = (
 ) => {
 	switch (action.type) {
 		case "nextRound": {
+			if (state.stage !== GameStage.Won) return state;
 			return {
 				...state,
 				round: state.round + 1,
