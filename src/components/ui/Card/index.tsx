@@ -1,14 +1,17 @@
-import styles from "./Card.module.scss";
+import { cn } from "@/helpers/util";
 
 export const Card = ({
 	className = "",
 	children,
 	...restProps
-}: {
-	children: React.ReactNode;
-	className?: string;
-} & React.HTMLAttributes<HTMLDivElement>) => (
-	<div className={`${styles["card"] ?? ""} ${className}`} {...restProps}>
+}: React.HTMLAttributes<HTMLDivElement>) => (
+	<div
+		className={cn(
+			"rounded-3xl transition-shadow duration-200 ease-out hover:shadow-2xl",
+			className,
+		)}
+		{...restProps}
+	>
 		{children}
 	</div>
 );

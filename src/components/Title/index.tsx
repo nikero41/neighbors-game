@@ -1,6 +1,5 @@
 import { useGameState } from "@/components/GameStateContext";
 import { getEmojiForCountry } from "@/helpers/util";
-import styles from "./Title.module.scss";
 
 export const Title = () => {
 	const {
@@ -8,13 +7,11 @@ export const Title = () => {
 	} = useGameState();
 
 	return (
-		<section className={styles["selected-country"]}>
-			<span className={styles["selected-country__flag"]}>
+		<section className="flex items-center gap-3 rounded-lg bg-gray-500 p-4 text-4xl text-white">
+			<span className="font-[TwemojiMozilla]">
 				{mainCountry?.cca2 && getEmojiForCountry(mainCountry.cca2)}
 			</span>
-			<h1 className={styles["selected-country__name"]}>
-				{mainCountry?.name.common ?? "Loading..."}
-			</h1>
+			<h1>{mainCountry?.name.common ?? "Loading..."}</h1>
 		</section>
 	);
 };

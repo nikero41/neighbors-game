@@ -1,5 +1,4 @@
 import { useGameState } from "@/components/GameStateContext";
-import styles from "./ProgressBar.module.scss";
 
 export const ProgressBar = () => {
 	const {
@@ -11,11 +10,10 @@ export const ProgressBar = () => {
 		totalCorrectAnswers > 0 ? (100 * rightAnswers) / totalCorrectAnswers : 0;
 
 	return (
-		<section id="progress" className={styles["progress-bar"]}>
+		<section className="sticky top-1.5 z-10 h-6 overflow-hidden rounded-lg bg-gray-300 md:static">
 			<div
-				id="current-progress"
 				style={{ width: `${progress}%` }}
-				className={styles["progress-bar__persentage"]}
+				className="h-full rounded-xl bg-secondary transition-[width] duration-150 ease-in-out"
 			/>
 		</section>
 	);
