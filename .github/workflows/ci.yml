@@ -13,23 +13,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
 
-      - name: Cache Node.js modules
+      - name: Cache node_modules
         id: deps-cache
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-deps-${{ hashFiles('./package-lock.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('./bun.lock') }}
 
       - name: Install dependencies
         if: steps.deps-cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: bun ci
 
       - name: Lint
-        run: npm run lint:eslint
+        run: bun lint:eslint
 
   typescript:
     runs-on: ubuntu-latest
@@ -37,20 +36,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
 
-      - name: Cache Node.js modules
+      - name: Cache node_modules
         id: deps-cache
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-deps-${{ hashFiles('./package-lock.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('./bun.lock') }}
 
       - name: Install dependencies
         if: steps.deps-cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: bun ci
 
       - name: Check types
-        run: npm run lint:ts
+        run: bun lint:ts
