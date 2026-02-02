@@ -1,13 +1,13 @@
-# Read Me Template
+# Neighbors Game
 
 ---
 
 ### Table of Contents
 
 - [Read Me Template](#read-me-template)
-    - [Table of Contents](#table-of-contents)
+  - [Table of Contents](#table-of-contents)
   - [Description](#description)
-      - [Technologies](#technologies)
+    - [Technologies](#technologies)
   - [How To Use](#how-to-use)
     - [Get started](#get-started)
     - [How to play](#how-to-play)

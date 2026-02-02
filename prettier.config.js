@@ -27,4 +27,3 @@ export default {
 	],
 	tailwindFunctions: ["clsx", "cn", "cva"],
 };
-
