@@ -88,9 +88,9 @@ const CountryCard = ({ country }: { country: Country }) => {
 
 	return (
 		<Card
-			className={`${cardStyles["country-card"]} ${
-				cardState ? cardStyles[cardState] : ""
-			} ${showNotFound ? cardStyles["not-found"] : ""}`}
+			className={`${cardStyles["country-card"] ?? ""} ${
+				cardState ? (cardStyles[cardState] ?? "") : ""
+			} ${showNotFound ? (cardStyles["not-found"] ?? "") : ""}`}
 			onClick={handleCardClick}
 		>
 			<div className={cardStyles["country-card__icon"]}>

@@ -1,14 +1,14 @@
 import styles from "./Card.module.scss";
 
 export const Card = ({
-	className,
+	className = "",
 	children,
 	...restProps
 }: {
 	children: React.ReactNode;
 	className?: string;
 } & React.HTMLAttributes<HTMLDivElement>) => (
-	<div className={`${styles["card"]} ${className ?? ""}`} {...restProps}>
+	<div className={`${styles["card"] ?? ""} ${className}`} {...restProps}>
 		{children}
 	</div>
 );
