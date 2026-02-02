@@ -13,7 +13,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	globalIgnores(["node_modules"]),
+	globalIgnores(["node_modules", "dist", "package-lock.json"]),
 	{
 		name: "Main options",
 		languageOptions: {
@@ -85,7 +85,10 @@ export default defineConfig(
 			parserOptions: {
 				projectService: {
 					loadTypeScriptPlugins: true,
-					allowDefaultProject: ["lint-staged.config.ts", "prisma.config.ts"],
+					allowDefaultProject: [
+						"lint-staged.config.ts",
+						"commitlint.config.ts",
+					],
 				},
 			},
 		},
@@ -173,9 +176,9 @@ export default defineConfig(
 	},
 	{
 		name: "Tailwind",
-		plugins: { "better-tailwindcss": tailwindPlugin },
+		files: ["**/*.{ts,tsx,mts,cts}", "**/*.{js,jsx,mjs,cjs}"],
+		extends: [tailwindPlugin.configs.recommended],
 		rules: {
-			...tailwindPlugin.configs.recommended.rules,
 			"better-tailwindcss/enforce-consistent-line-wrapping": "off",
 		},
 	},
@@ -194,7 +197,10 @@ export default defineConfig(
 			/* Disable PropTypes */
 			"react/prop-types": "off",
 			/* Explicitly set filename if it includes jsx */
-			"react/jsx-filename-extension": ["warn", { extensions: [".jsx", ".tsx"] }],
+			"react/jsx-filename-extension": [
+				"warn",
+				{ extensions: [".jsx", ".tsx"] },
+			],
 			/* Make all components arrow functions */
 			"react/function-component-definition": [
 				"warn",
