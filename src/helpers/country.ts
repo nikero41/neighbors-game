@@ -36,7 +36,9 @@ export const pickMainCountry = (
 ): IMainCountry => {
 	const countriesWithBorders = countries.filter(
 		(country: Country) =>
-			Array.isArray(country.borders) && country.borders.length > 0,
+			Array.isArray(country.borders) &&
+			country.borders.length > 0 &&
+			!history.includes(country.name.common),
 	);
 
 	const mainCountry =
@@ -44,11 +46,6 @@ export const pickMainCountry = (
 			Math.floor(Math.random() * countriesWithBorders.length)
 		];
 	if (!mainCountry) throw new Error("Failed to pick random country");
-
-	const isInHistory = history.includes(mainCountry.name.common);
-	if (isInHistory) {
-		return pickMainCountry(countries, history);
-	}
 
 	return mainCountry as IMainCountry;
 };
