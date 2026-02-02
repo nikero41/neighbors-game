@@ -3,38 +3,40 @@ import { createPortal } from "react-dom";
 
 import styles from "./Modal.module.scss";
 
-const Backdrop = () => {
-	return <div className={styles["modal__backdrop"]}></div>;
-};
+const Backdrop = () => <div className={styles["modal__backdrop"]} />;
 
-interface Props {
+const Modal = ({
+	teleport,
+	header,
+	body,
+	actions,
+	children,
+}: {
 	teleport?: boolean;
 	header?: string;
 	body?: React.ReactNode | string;
 	actions?: React.ReactNode;
-}
-
-const Modal: React.FC<Props> = props => {
+	children?: React.ReactNode;
+}) => {
 	const modal = (
 		<>
 			<Backdrop />
-			<Card className={`${styles["modal"]}`}>
-				{props.header && (
-					<header className={styles["modal__header"]}>{props.header}</header>
+
+			<Card className={styles["modal"]}>
+				{header && (
+					<header className={styles["modal__header"]}>{header}</header>
 				)}
 
-				<main className={styles["modal__body"]}>
-					{props.body ?? props.children}
-				</main>
+				<main className={styles["modal__body"]}>{body ?? children}</main>
 
-				{props.actions && (
-					<footer className={styles["modal__actions"]}>{props.actions}</footer>
+				{actions && (
+					<footer className={styles["modal__actions"]}>{actions}</footer>
 				)}
 			</Card>
 		</>
 	);
 
-	if (props.teleport) {
+	if (teleport) {
 		return createPortal(
 			modal,
 			document.querySelector<HTMLDivElement>("#overlays")!,

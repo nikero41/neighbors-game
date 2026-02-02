@@ -3,15 +3,18 @@ import Modal from "components/UI/Modal";
 
 import styles from "./CardArea.module.scss";
 
-interface Props {
+const CardArea = ({
+	showModal,
+	message,
+	children,
+}: {
 	children: React.ReactNode;
 	showModal: boolean;
 	message: string;
-}
-const CardArea: React.FC<Props> = props => (
+}) => (
 	<section className={styles["neighbours"]}>
-		{props.showModal && <Modal header="Game over" body={props.message} />}
-		{props.children}
+		{showModal && <Modal header="Game over" body={message} />}
+		{children}
 	</section>
 );
 

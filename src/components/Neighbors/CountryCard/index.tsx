@@ -7,17 +7,7 @@ import type ICountry from "types/country-api.types.js";
 
 import styles from "./CountryCard.module.scss";
 
-const cardStateOptions = {
-	correct: "correct",
-	incorrect: "incorrect",
-	notFound: "not-found",
-};
-
-interface Props {
-	country: ICountry;
-}
-
-const CountryCard: React.FC<Props> = props => {
+const CountryCard = ({ country }: { country: ICountry }) => {
 	const countrySlice = useSelector(state => state.countries);
 	const roundInfoSlice = useSelector(state => state.roundInfo);
 	const dispatch = useDispatch();
@@ -25,45 +15,51 @@ const CountryCard: React.FC<Props> = props => {
 	const [cardState, setCardState] = useState<string | null>(null);
 
 	useEffect(() => {
-		if (cardState === cardStateOptions.correct) return;
+		if (cardState === CardStateOptions.Correct) return;
 
 		// Validate card
 		if (roundInfoSlice.hasGameEnded && isCardCorrect) {
-			setCardState(cardStateOptions.notFound);
+			setCardState(CardStateOptions.NotFound);
 		}
 	}, [roundInfoSlice.hasGameEnded]);
 
 	const isCardCorrect = countrySlice.mainCountry?.borders.includes(
-		props.country.cca3,
+		country.cca3,
 	);
 
 	const handleCardClick = () => {
+		if (cardState) return;
+
 		if (isCardCorrect) {
 			dispatch(roundActions.correctAnswer());
 			// gameInfo.correctAnswer();
-			setCardState(cardStateOptions.correct);
+			setCardState(CardStateOptions.Correct);
 		} else {
 			dispatch(roundActions.incorrectAnswer());
 			// gameInfo.incorrectAnswer();
-			setCardState(cardStateOptions.incorrect);
+			setCardState(CardStateOptions.Incorrect);
 		}
 	};
 
 	return (
 		<Card
 			className={`${styles["country-card"]} ${
-				cardState ? styles[cardState] : null
+				cardState ? styles[cardState] : ""
 			}`}
-			onClick={!cardState ? handleCardClick : null}
+			onClick={handleCardClick}
 		>
 			<div className={styles["country-card__icon"]}>
-				{getEmojiForCountry(props.country.cca2)}
+				{getEmojiForCountry(country.cca2)}
 			</div>
-			<p className={styles["country-card__text"]}>
-				{props.country.name.common}
-			</p>
+			<p className={styles["country-card__text"]}>{country.name.common}</p>
 		</Card>
 	);
 };
 
 export default CountryCard;
+
+enum CardStateOptions {
+	Correct = "correct",
+	Incorrect = "incorrect",
+	NotFound = "not-found",
+}

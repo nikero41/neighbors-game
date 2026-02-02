@@ -23,9 +23,9 @@ const App = () => {
 
 	const [countryCards, setCountryCards] = useState<ICountry[]>([]);
 
-	//Fetching all the countries data
+	// Fetching all the countries data
 	useEffect(() => {
-		(async () => {
+		void (async () => {
 			const error = await dispatch(fetchAllCountries());
 
 			if (error) {

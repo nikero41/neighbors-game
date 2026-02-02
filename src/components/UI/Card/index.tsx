@@ -1,19 +1,16 @@
 import styles from "./Card.module.scss";
 
-interface Props {
+const Card = ({
+	className,
+	children,
+	...restProps
+}: {
 	children: React.ReactNode;
 	className?: string;
-	[props: string]: any;
-}
-
-const Card: React.FC<Props> = props => {
-	const { children, className, ...divProperties } = props;
-
-	return (
-		<div className={`${styles["card"]} ${className}`} {...divProperties}>
-			{children}
-		</div>
-	);
-};
+} & React.HTMLAttributes<HTMLDivElement>) => (
+	<div className={`${styles["card"]} ${className ?? ""}`} {...restProps}>
+		{children}
+	</div>
+);
 
 export default Card;

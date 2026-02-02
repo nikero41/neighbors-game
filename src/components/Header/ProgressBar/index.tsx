@@ -20,9 +20,9 @@ const ProgressBar = () => {
 		<section id="progress" className={styles["progress-bar"]}>
 			<div
 				id="current-progress"
-				style={{ width: progress + "%" }}
+				style={{ width: `${progress}%` }}
 				className={styles["progress-bar__persentage"]}
-			></div>
+			/>
 		</section>
 	);
 };

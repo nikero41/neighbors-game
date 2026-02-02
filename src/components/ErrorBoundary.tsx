@@ -5,13 +5,13 @@ interface State {
 	error: Error | null;
 }
 
-class ErrorBoundary extends Component<{}, State> {
+class ErrorBoundary extends Component {
 	state: State = {
 		error: null,
 	};
 
 	static getDerivedStateFromError(error: Error) {
-		return { error: error };
+		return { error };
 	}
 
 	render() {

@@ -37,20 +37,15 @@ export const useError = () => {
 		</div>
 	);
 
-	const ErrorModal = () => {
-		return (
-			<>
-				{error && (
-					<Modal
-						teleport
-						header="An error occured"
-						body={error}
-						actions={errorButtons}
-					/>
-				)}
-			</>
+	const ErrorModal = () =>
+		error && (
+			<Modal
+				teleport
+				header="An error occured"
+				body={error}
+				actions={errorButtons}
+			/>
 		);
-	};
 
 	return {
 		ErrorModal,
