@@ -79,7 +79,7 @@ const CountryCard = ({ country }: { country: Country }) => {
 		cardState !== CardStateOptions.Correct;
 
 	const handleCardClick = () => {
-		if (cardState) return;
+		if (cardState || stage !== GameStage.OnGoing) return;
 		const { correct } = gameAction.submitCountry(country);
 		setCardState(
 			correct ? CardStateOptions.Correct : CardStateOptions.Incorrect,
