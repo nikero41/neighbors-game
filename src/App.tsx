@@ -17,7 +17,7 @@ const App = () => {
 
 	return (
 		<GameStateProvider countries={countries}>
-			<div className="m-10 grid-cols-[1fr_4fr] gap-1.5 md:grid">
+			<div className="m-2 grid-cols-[1fr_4fr] gap-1.5 sm:m-10 md:grid">
 				<Sidebar />
 				<main className="space-y-1.5">
 					<Title />
