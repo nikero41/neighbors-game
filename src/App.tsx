@@ -1,8 +1,7 @@
 import { memo } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import "./global.scss";
-
-import { useQuery } from "@tanstack/react-query";
 
 import { CountryCardsGrid } from "@/components/CountryCardsGrid";
 import { GameStateProvider } from "@/components/GameStateContext";
@@ -12,7 +11,7 @@ import { Title } from "@/components/Title";
 import { fetchCountries } from "@/helpers/country";
 
 const App = () => {
-	const { data: countries } = useQuery({
+	const { data: countries, isSuccess } = useQuery({
 		queryKey: ["countries"],
 		queryFn: fetchCountries,
 	});
@@ -24,7 +23,7 @@ const App = () => {
 				<main>
 					<Title />
 					<ProgressBar />
-					<CountryCardsGrid countries={countries} />
+					{isSuccess && <CountryCardsGrid countries={countries} />}
 				</main>
 			</div>
 		</GameStateProvider>

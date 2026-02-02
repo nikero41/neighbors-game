@@ -9,11 +9,7 @@ import { getEmojiForCountry, shuffleArray } from "@/helpers/util";
 import cardStyles from "./CountryCard.module.scss";
 import styles from "./CountryCardsGrid.module.scss";
 
-export const CountryCardsGrid = ({
-	countries,
-}: {
-	countries: Country[] | undefined;
-}) => {
+export const CountryCardsGrid = ({ countries }: { countries: Country[] }) => {
 	const {
 		gameState: { mainCountry, stage, round },
 	} = useGameState();
