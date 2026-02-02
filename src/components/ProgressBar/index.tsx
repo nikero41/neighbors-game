@@ -7,7 +7,8 @@ export const ProgressBar = () => {
 	} = useGameState();
 
 	const totalCorrectAnswers = mainCountry?.borders.length ?? 0;
-	const progress = (100 * rightAnswers) / totalCorrectAnswers;
+	const progress =
+		totalCorrectAnswers > 0 ? (100 * rightAnswers) / totalCorrectAnswers : 0;
 
 	return (
 		<section id="progress" className={styles["progress-bar"]}>
