@@ -14,14 +14,14 @@ export const Sidebar = () => {
 	};
 
 	return (
-		<aside className="mb-1.5 flex min-w-44 flex-col rounded-lg bg-primary px-6 text-white md:mb-0">
-			<h1 className="mt-5 text-3xl font-bold">
+		<aside className="mb-1.5 flex min-w-44 flex-col rounded-lg bg-primary px-6 py-5 text-white md:mb-0">
+			<h1 className="text-3xl font-bold">
 				Find
 				<br />
 				the Neighbors
 			</h1>
 
-			<div className="mt-10 grid grid-cols-2 grid-rows-2 gap-6">
+			<div className="my-10 grid grid-cols-2 grid-rows-2 gap-6">
 				<p>Round:</p>
 				<p className="ml-auto">{round}</p>
 
@@ -30,14 +30,14 @@ export const Sidebar = () => {
 			</div>
 
 			<Button
-				className="mt-auto mb-5"
+				className="mt-auto"
 				disabled={stage !== GameStage.Won}
 				onClick={gameAction.nextRound}
 			>
 				Next Country
 			</Button>
 
-			<Button className="mb-5" onClick={handleNewGameClick}>
+			<Button className="mt-5" onClick={handleNewGameClick}>
 				New Game
 			</Button>
 		</aside>
